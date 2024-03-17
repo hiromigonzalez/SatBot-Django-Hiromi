@@ -13,18 +13,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 
-# Configure database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres.jswvecjagqmromsmvpsc',
-        'PASSWORD': 'hiromiandjay2024',
-        'HOST': 'aws-0-us-west-1.pooler.supabase.com',
-        'PORT': '5432',
-    }
-}
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,7 +28,6 @@ SECRET_KEY = 'django-insecure-36byd=lho=j@dhup!-n0*w$_4^@c%dwbiuvhkba6f^7+4$q5c!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -89,13 +76,25 @@ WSGI_APPLICATION = 'DjangoChatbot.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+"""
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres.lqnqlhdyxzjrcrwkigeb',
+        'PASSWORD': 'universityofsandiego2024',
+        'HOST': 'aws-0-us-west-1.pooler.supabase.com',
+        'PORT': '5432',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -141,3 +140,4 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'chat.CustomUser'

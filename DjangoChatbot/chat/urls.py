@@ -1,15 +1,12 @@
 # chat/urls.py
 from django.urls import path
 from . import views
-from django.conf import settings
-from django.conf.urls.static import static
+from .views import chat_home, login_view, signup_view
+
+app_name = 'chat'  # Namespace
 
 urlpatterns = [
-    path('', views.chat_home, name='chat_home'),
-    path('login/', views.login_view, name='login'),
+    path('', chat_home, name='chat_home'),
+    path('login/', login_view, name='login'),
+    path('signup/', signup_view, name='signup'),
 ]
-
-STATIC_URL = '/static/'
-
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

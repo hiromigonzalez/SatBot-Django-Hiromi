@@ -49,6 +49,7 @@
     font-size: 16px;
 }
 
+
 .login-button:hover {
     background-color: #0069d9; /* Darker blue */
 }
@@ -59,12 +60,20 @@
 
     <div class="login-container">
         <h2>Login to SatBot</h2>
-        <form action="/login" method="post">
+        <form action="{% url 'chat:login' %}" method="post">
             {% csrf_token %}
+            <!-- Display any errors from login attempt -->
+            {% if error %}
+            <div style="color: red; margin-bottom: 10px;">{{ error }}</div>
+            {% endif %}
             <input type="text" name="username" placeholder="Enter Username" required>
             <input type="password" name="password" placeholder="Enter Password" required>
             <button type="submit" class="login-button">Login</button>
         </form>
+        <!-- Link to the signup page -->
+        <div style="text-align: center; margin-top: 20px;">
+            Don't have an account? <a href="{% url 'chat:signup' %}">Sign up</a>
+        </div>
     </div>
 
 </body>
