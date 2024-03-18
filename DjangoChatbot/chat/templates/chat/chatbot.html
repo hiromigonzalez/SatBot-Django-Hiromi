@@ -288,6 +288,19 @@ n-chat-icon i {
 
 }
 
+.message-icon.initials {
+    background-color: rgb(116, 177, 226); 
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+
 .message-icon img {
     width: 100%;  /* Ensures the image attempts to fill the width of the container */
     height: 100%;  /* Ensures the image attempts to fill the height of the container */
@@ -385,31 +398,36 @@ n-chat-icon i {
 
     var botIconUrl = "{% static 'icons/bot.png' %}";
     var personIconUrl = "{% static 'icons/person.png' %}";
-    
+    var userInitials = "{{ user_initials }}";
+
     function sendMessage() {
     var input = document.getElementById("userInput");
     var message = input.value.trim();
 
     if (message !== '') {
-    var chatbox = document.getElementById("chatbox");
-    
-    // User Message
-    var userMessage = document.createElement("div");
-    userMessage.className = 'message user-message';
-    userMessage.innerHTML = "<div class='message-content'>" + message.replace(/\n/g, '<br>') + "</div><div class='message-icon'><img src='" + personIconUrl + "' alt='User Icon' class='message-icon'></div>";
-    chatbox.appendChild(userMessage);
-    
-    input.value = '';
-    input.style.height = '50px';
+        var chatbox = document.getElementById("chatbox");
 
-    // Simulate a bot response
-    setTimeout(function() {
-        var botMessage = document.createElement("div");
-        botMessage.className = 'message bot-message';
-        botMessage.innerHTML = "<div class='message-icon'><img src='" + botIconUrl + "' alt='Bot Icon' class='message-icon'></div><div class='message-content'>Welcome to Satbot 😃, your 24/7 CS guide for USD. How can I help?</div>";
-        chatbox.appendChild(botMessage);
-        chatbox.scrollTop = chatbox.scrollHeight;
-    }, 500);
+        // User Message
+        var userMessage = document.createElement("div");
+        userMessage.className = 'message user-message';
+        
+        // Determine content for the message icon (initials or person icon)
+        var messageIconContent = userInitials ? `<div class='message-icon initials'>${userInitials}</div>` : `<img src='${personIconUrl}' alt='User Icon' class='message-icon'>`;
+
+        userMessage.innerHTML = `<div class='message-content'>${message.replace(/\n/g, '<br>')}</div>${messageIconContent}`;
+        chatbox.appendChild(userMessage);
+
+        input.value = '';
+        input.style.height = '50px';
+
+        // Simulate a bot response
+        setTimeout(function() {
+            var botMessage = document.createElement("div");
+            botMessage.className = 'message bot-message';
+            botMessage.innerHTML = `<div class='message-icon'><img src='${botIconUrl}' alt='Bot Icon'></div><div class='message-content'>Welcome to Satbot 😃, your 24/7 CS guide for USD. How can I help?</div>`;
+            chatbox.appendChild(botMessage);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }, 500);
     }
 }
 

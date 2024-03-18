@@ -4,10 +4,18 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
 
+
 def chat_home(request):
-    print("User authenticated:", request.user.is_authenticated) 
-    username = request.user.username if request.user.is_authenticated else 'Guest'
-    return render(request, 'chat/chatbot.html', {'username': username})
+    if request.user.is_authenticated:
+        # Assuming the user has a first and last name, split the names to get initials
+        initials = ''.join([name[0].upper() for name in request.user.get_full_name().split() if name])
+    else:
+        initials = "GU"  # Guest User initials, or choose what makes sense for your app
+    
+    return render(request, 'chat/chatbot.html', {
+        'username': request.user.username,
+        'user_initials': initials  # Add this line to pass initials to the template
+    })
 
 def login_view(request):
     if request.method == 'POST':
