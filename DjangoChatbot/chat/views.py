@@ -5,7 +5,9 @@ from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
 
 def chat_home(request):
-    return render(request, 'chat/chatbot.html')
+    print("User authenticated:", request.user.is_authenticated) 
+    username = request.user.username if request.user.is_authenticated else 'Guest'
+    return render(request, 'chat/chatbot.html', {'username': username})
 
 def login_view(request):
     if request.method == 'POST':
