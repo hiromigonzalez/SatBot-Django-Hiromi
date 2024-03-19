@@ -89,8 +89,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-        'USER': 'postgres.lqnqlhdyxzjrcrwkigeb',
-        'PASSWORD': 'universityofsandiego2024',
+        'USER': 'postgres.joinxawlcyttmtpyxpde',
+        'PASSWORD': 'universityofsandiegosatbot',
         'HOST': 'aws-0-us-west-1.pooler.supabase.com',
         'PORT': '5432',
     }
