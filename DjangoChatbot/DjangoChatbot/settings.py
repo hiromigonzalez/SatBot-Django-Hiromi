@@ -84,13 +84,13 @@ DATABASES = {
     }
 }
 """
-
+# satbot-hiromi-3 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-        'USER': 'postgres.joinxawlcyttmtpyxpde',
-        'PASSWORD': 'universityofsandiegosatbot',
+        'USER': 'postgres.tdspcbvzxcieemkmwzia',
+        'PASSWORD': 'univeristyofsandiegosatbot',
         'HOST': 'aws-0-us-west-1.pooler.supabase.com',
         'PORT': '5432',
     }
@@ -140,4 +140,4 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL = 'chat.CustomUser'
+AUTH_USER_MODEL = 'chat.User'
